@@ -1,11 +1,10 @@
-## Korean License Plate Generator
+## Cyprus License Plate Generator
 **Download and Run. It generates images with YOLO format labels**
 
 **Run**
 ```buildoutcfg
-git clone https://github.com/yakhyo/Korean-License-Plate-Generate.git
+git clone https://github.com/hci-mkim/Cyprus-License-Plate-Generate.git
 python generate.py # to generate passanger car license plate images
-python generate_truck.py # to generate truck license plate images
 ```
 
 `assets` folder:
@@ -14,29 +13,16 @@ python generate_truck.py # to generate truck license plate images
 assets
 ├── chars
     ├── a.jpg
-    ├── ba.jpg
-    ├── bae.jpg
+    ├── b.jpg
+    ├── c.jpg
     └── ...
-├── chars_truck
-    ├── a.jpg
-    ├── ba.jpg
-    ├── bae.jpg
-    └── ...
+
 ├── nums
     ├── 0.jpg
     ├── 1.jpg
     ├── 2.jpg
     └── ...
-├── region1
-    ├── 001_bu.jpg
-    ├── 002_chung.jpg
-    ├── 003_chung.jpg
-    └── ...
-├── region2
-    ├── 001_san.jpg
-    ├── 002_buk.jpg
-    ├── 003_nam.jpg
-    └── ...
+
 └── plates
     ├── type_a
         ├── plate_1jpg
@@ -60,7 +46,7 @@ assets
         └── ...
 └── names.txt
 ```
-This code generates two types of passenger car and turck license plate images:
+This code generates two types of license plate images:white background lp is the one released after 2014, yellow one is before 2014.
 
 Type A:
 <div align="center">
@@ -76,27 +62,12 @@ Type B
 
 </div>
 
-Type C
-<div align="center">
 
-![License plate type 3](sample/image_ax_4.jpg)
-
-</div>
-
-Type D
-<div align="center">
-
-![License plate type 4](sample/image_dx_30.jpg)
-
-</div>
 
 `names.txt` consists from numbers and letter combinations:
 
 ```angular2html
-0 1 2 3 4 5 6 7 8 9 ga na da ra ma ba sa a ja ha geo neo 
-deo reo meo beo seo eo jeo heo go no do ro mo bo so o jo 
-ho gu nu du ru mu bu su u ju bae gwang nam je cheon dae
-gang se gi gyeong san jong buk won ul chung in jeon
+0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r s t u v w x y z
 ```
 
 After running the `generate.py` file, `result` folder will appear:
@@ -107,11 +78,18 @@ result
     ├── image_a_1.jpg
     ├── image_a_2.jpg
     └── ...
+    ├── image_b_0.jpg
+    ├── image_b_1.jpg
+    ├── image_b_2.jpg
+
 └── labels
     ├── image_a_0.txt
     ├── image_a_1.txt
     ├── image_a_2.txt
     └── ...
+    ├── image_b_0.txt
+    ├── image_b_1.txt
+    ├── image_b_2.txt
 ```
 
 * Labels are prepared according to YOLO labelling format
@@ -125,3 +103,4 @@ python distrib.py
 Reference
 
 1. [https://github.com/qjadud1994/Korean-license-plate-Generator](https://github.com/qjadud1994/Korean-license-plate-Generator)
+2. [https://github.com/yakhyo/Korean-License-Plate-Generator](https://github.com/yakhyo/Korean-License-Plate-Generator)

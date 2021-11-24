@@ -34,7 +34,6 @@ class ImageGenerator:
         file_path = chars_path
         file_list = os.listdir(file_path)
         self.char_list = list()
-
         self.Char1 = list()
         for file_ in file_list:
             img_path = os.path.join(file_path, file_)
@@ -48,8 +47,6 @@ class ImageGenerator:
 
             self.Char1.append(img)
             self.char_list.append(file_[0:-4])
-            # print(self.char_list)
-
 
     @staticmethod
     def add(background_image, char):
@@ -87,71 +84,50 @@ class ImageGenerator:
                 label = "Z"
                 # row -> y , col -> x
 
-                row, col = 13, 85
-                # character 1
+                row, col = 13, 35
+                # number 1
                 x1, y1 = col, row
                 rand_int = random.randint(0, 9)
-                rand_char =  random.randint(0, 25)
-
-                label += self.char_list[rand_char]
-                Plate[row:row + 83, col:col + 60, :] = self.add(Plate[row:row + 83, col:col + 60, :],
-                                                                self.random_bright(char[rand_char]))
+                label += self.number_list[rand_int]
+                Plate[row:row + 83, col:col + 56, :] = self.add(Plate[row:row + 83, col:col + 56, :],
+                                                                self.random_bright(number[rand_int]))
                 x2, y2 = x1 + 56, y1 + 83
                 x_r, y_r = (x1 + x2) / (2 * 520), (y1 + y2) / (2 * 110)
                 w_r, h_r = (56 / 520), (83 / 110)
-
-                class_name = names.index(self.char_list[rand_char])
+                class_name = names.index(self.number_list[rand_int])
                 txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
                 f.write(txt)
 
-                ##
-                # character 2
-                ##
                 col += 56
                 x2, y1 = x2, y1
-
-
-                rand_char =  random.randint(0, 25)
-
-                label += self.char_list[rand_char]
-                Plate[row:row + 83, col:col + 60, :] = self.add(Plate[row:row + 83, col:col + 60, :],
-                                                                self.random_bright(char[rand_char]))
-                
-
+                # number 2
+                rand_int = random.randint(0, 9)
+                label += self.number_list[rand_int]
+                Plate[row:row + 83, col:col + 56, :] = self.add(Plate[row:row + 83, col:col + 56, :],
+                                                                self.random_bright(number[rand_int]))
                 x3, y2 = x2 + 56, y2
                 x_r, y_r = (x2 + x3) / (2 * 520), (y1 + y2) / (2 * 110)
                 w_r, h_r = (56 / 520), (83 / 110)
-                class_name = names.index(self.char_list[rand_char])
+                class_name = names.index(self.number_list[rand_int])
                 txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
                 f.write(txt)
 
-
-                ##
-                # character 3
-                ##
                 col += 56
                 x3, y1 = x3, y1
-
-                rand_char =  random.randint(0, 25)
-
-                label += self.char_list[rand_char]
+                # character 3
+                label += self.char_list[i % 40]
                 Plate[row:row + 83, col:col + 60, :] = self.add(Plate[row:row + 83, col:col + 60, :],
-                                                                self.random_bright(char[rand_char]))
+                                                                self.random_bright(char[i % 40]))
                 x4, y2 = x3 + 60, y2
                 x_r, y_r = (x3 + x4) / (2 * 520), (y1 + y2) / (2 * 110)
                 w_r, h_r = (60 / 520), (83 / 110)
-                class_name = names.index(self.char_list[rand_char])
+                class_name = names.index(self.char_list[i % 40])
                 txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
                 f.write(txt)
 
-
-                ###
-                # number 4
-                ###
-
                 col += (60 + 36)
                 x4, y1 = col, y1
-
+                # number 4
                 rand_int = random.randint(0, 9)
                 label += self.number_list[rand_int]
                 Plate[row:row + 83, col:col + 56, :] = self.add(Plate[row:row + 83, col:col + 56, :],
@@ -163,13 +139,9 @@ class ImageGenerator:
                 txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
                 f.write(txt)
 
-
-                ###
-                # number 5
-                ###
                 col += 56
                 x5, y1 = x5, y1
-
+                # number 5
                 rand_int = random.randint(0, 9)
                 label += self.number_list[rand_int]
                 Plate[row:row + 83, col:col + 56, :] = self.add(Plate[row:row + 83, col:col + 56, :],
@@ -181,13 +153,9 @@ class ImageGenerator:
                 txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
                 f.write(txt)
 
-
-                ###
-                # number 6
-                ###
                 col += 56
                 x6, y1 = x6, y1
-
+                # number 6
                 rand_int = random.randint(0, 9)
                 label += self.number_list[rand_int]
                 Plate[row:row + 83, col:col + 56, :] = self.add(Plate[row:row + 83, col:col + 56, :],
@@ -198,23 +166,22 @@ class ImageGenerator:
                 class_name = names.index(self.number_list[rand_int])
                 txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
                 f.write(txt)
-                f.close()
 
-                # col += 56
-                # x7, y1 = x7, y1
-                # # number 7
-                # rand_int = random.randint(0, 9)
-                # label += self.number_list[rand_int]
-                # Plate[row:row + 83, col:col + 56, :] = self.add(Plate[row:row + 83, col:col + 56, :],
-                #                                                 self.random_bright(number[rand_int]))
-                # x8, y2 = x7 + 56, y2
-                # x_r, y_r = (x7 + x8) / (2 * 520), (y1 + y2) / (2 * 110)
-                # w_r, h_r = (56 / 520), (83 / 110)
-                # class_name = names.index(self.number_list[rand_int])
-                # txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
-                # f.write(txt)
-                # col += 56
-                # f.close()
+                col += 56
+                x7, y1 = x7, y1
+                # number 7
+                rand_int = random.randint(0, 9)
+                label += self.number_list[rand_int]
+                Plate[row:row + 83, col:col + 56, :] = self.add(Plate[row:row + 83, col:col + 56, :],
+                                                                self.random_bright(number[rand_int]))
+                x8, y2 = x7 + 56, y2
+                x_r, y_r = (x7 + x8) / (2 * 520), (y1 + y2) / (2 * 110)
+                w_r, h_r = (56 / 520), (83 / 110)
+                class_name = names.index(self.number_list[rand_int])
+                txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
+                f.write(txt)
+                col += 56
+                f.close()
 
                 if save:
                     cv2.imwrite(self.save_path + "image_a_" + str(count_a) + ".jpg", Plate)
@@ -223,149 +190,125 @@ class ImageGenerator:
                     pass
 
     def Type_B(self, num, save=False):
-        number = [cv2.resize(number, (56, 83)) for number in self.Number]
-        char = [cv2.resize(char1, (60, 83)) for char1 in self.Char1]
-        count_a = 0
+        number = [cv2.resize(number, (45, 83)) for number in self.Number]
+        char = [cv2.resize(char1, (49, 70)) for char1 in self.Char1]
+        count_b = 0
         for p in self.list_:
             plate = cv2.imread(os.path.join(self.plate, p))
             for i in range(num):
-                f = open(f'./result/labels/image_b_{count_a}.txt', 'a')
-                Plate = cv2.resize(plate, (520, 110))
-                label = "Z"
-                # row -> y , col -> x
+                f = open(f'./result/labels/image_b_{count_b}.txt', 'a')
+                Plate = cv2.resize(plate, (355, 155))
+                label = ''
+                row, col = 45, 15  # row + 83, col + 45
 
-
-                ###
-                # character 1
-                ###
-                row, col = 13, 85
-
+                # number 1
                 x1, y1 = col, row
                 rand_int = random.randint(0, 9)
-                rand_char =  random.randint(0, 25)
+                label += self.number_list[rand_int]
+                Plate[row:row + 83, col:col + 45, :] = self.add(Plate[row:row + 83, col:col + 45, :],
+                                                                self.random_bright(number[rand_int]))
 
-
-                label += self.char_list[rand_char]
-                Plate[row:row + 83, col:col + 60, :] = self.add(Plate[row:row + 83, col:col + 60, :],
-                                                                self.random_bright(char[rand_char]))
-                x2, y2 = x1 + 56, y1 + 83
-                x_r, y_r = (x1 + x2) / (2 * 520), (y1 + y2) / (2 * 110)
-                w_r, h_r = (56 / 520), (83 / 110)
-
-                class_name = names.index(self.char_list[rand_char])
+                x2, y2 = x1 + 45, y1 + 83
+                x_r, y_r = (x1 + x2) / (2 * 355), (y1 + y2) / (2 * 155)
+                w_r, h_r = (45 / 355), (83 / 155)
+                class_name = names.index(self.number_list[rand_int])
                 txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
                 f.write(txt)
 
-                ###
-                # character 2
-                ###
-                col += 56
+                col += 45
                 x2, y1 = x2, y1
-
-                rand_char =  random.randint(0, 25)
-                label += self.char_list[rand_char]
-                Plate[row:row + 83, col:col + 60, :] = self.add(Plate[row:row + 83, col:col + 60, :],
-                                                                self.random_bright(char[rand_char]))
-                
-                x3, y2 = x2 + 56, y2
-                x_r, y_r = (x2 + x3) / (2 * 520), (y1 + y2) / (2 * 110)
-                w_r, h_r = (56 / 520), (83 / 110)
-                class_name = names.index(self.char_list[rand_char])
+                # number 2
+                rand_int = random.randint(0, 9)
+                label += self.number_list[rand_int]
+                Plate[row:row + 83, col:col + 45, :] = self.add(Plate[row:row + 83, col:col + 45, :],
+                                                                self.random_bright(number[rand_int]))
+                x3, y2 = x2 + 45, y2
+                x_r, y_r = (x2 + x3) / (2 * 355), (y1 + y2) / (2 * 155)
+                w_r, h_r = (45 / 355), (83 / 155)
+                class_name = names.index(self.number_list[rand_int])
                 txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
                 f.write(txt)
 
-                ###
-                # character 3
-                ###
-                col += 56
+                col += 45
                 x3, y1 = x3, y1
+                # number 3
+                label += self.char_list[i % 40]
+                Plate[row + 12:row + 82, col + 2:col + 49 + 2, :] = self.add(
+                    Plate[row + 12:row + 82, col + 2:col + 49 + 2, :],
+                    self.random_bright(char[i % 40]))
 
-                rand_char =  random.randint(0, 25)
-
-                label += self.char_list[rand_char]
-                Plate[row:row + 83, col:col + 60, :] = self.add(Plate[row:row + 83, col:col + 60, :],
-                                                                self.random_bright(char[rand_char]))
-                x4, y2 = x3 + 60, y2
-                x_r, y_r = (x3 + x4) / (2 * 520), (y1 + y2) / (2 * 110)
-                w_r, h_r = (60 / 520), (83 / 110)
-                class_name = names.index(self.char_list[rand_char])
+                x4, y2 = x3 + 49, y2
+                x_r, y_r = (x3 + x4) / (2 * 355), (y1 + y2) / (2 * 155)
+                w_r, h_r = (49 / 355), (70 / 155)
+                class_name = names.index(self.char_list[i % 40])
                 txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
                 f.write(txt)
 
-                ###
-                # number 4
-                ###
-                col += (60 + 36)
+                col += 49 + 2
                 x4, y1 = col, y1
-
+                # number 4
                 rand_int = random.randint(0, 9)
                 label += self.number_list[rand_int]
-                Plate[row:row + 83, col:col + 56, :] = self.add(Plate[row:row + 83, col:col + 56, :],
-                                                                self.random_bright(number[rand_int]))
-                x5, y2 = x4 + 56, y2
-                x_r, y_r = (x4 + x5) / (2 * 520), (y1 + y2) / (2 * 110)
-                w_r, h_r = (56 / 520), (83 / 110)
+                Plate[row:row + 83, col + 2:col + 45 + 2, :] = self.add(Plate[row:row + 83, col:col + 45, :],
+                                                                        self.random_bright(number[rand_int]))
+
+                x5, y2 = x4 + 45 + 2, y2
+                x_r, y_r = (x4 + x5) / (2 * 355), (y1 + y2) / (2 * 155)
+                w_r, h_r = (45 / 355), (83 / 155)
                 class_name = names.index(self.number_list[rand_int])
                 txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
                 f.write(txt)
-
-                ###
+                col += 45 + 2
+                x5, y1 = col, y1
                 # number 5
-                ###
-                col += 56
-                x5, y1 = x5, y1
-
                 rand_int = random.randint(0, 9)
                 label += self.number_list[rand_int]
-                Plate[row:row + 83, col:col + 56, :] = self.add(Plate[row:row + 83, col:col + 56, :],
+                Plate[row:row + 83, col:col + 45, :] = self.add(Plate[row:row + 83, col:col + 45, :],
                                                                 self.random_bright(number[rand_int]))
-                x6, y2 = x5 + 56, y2
-                x_r, y_r = (x5 + x6) / (2 * 520), (y1 + y2) / (2 * 110)
-                w_r, h_r = (56 / 520), (83 / 110)
+                x6, y2 = x5 + 45, y2
+                x_r, y_r = (x5 + x6) / (2 * 355), (y1 + y2) / (2 * 155)
+                w_r, h_r = (45 / 355), (83 / 155)
                 class_name = names.index(self.number_list[rand_int])
                 txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
                 f.write(txt)
-
-                ###
-                # number 6
-                ###
-                col += 56
+                col += 45
                 x6, y1 = x6, y1
 
+                # number 6
                 rand_int = random.randint(0, 9)
                 label += self.number_list[rand_int]
-                Plate[row:row + 83, col:col + 56, :] = self.add(Plate[row:row + 83, col:col + 56, :],
+                Plate[row:row + 83, col:col + 45, :] = self.add(Plate[row:row + 83, col:col + 45, :],
                                                                 self.random_bright(number[rand_int]))
-                x7, y2 = x6 + 56, y2
-                x_r, y_r = (x6 + x7) / (2 * 520), (y1 + y2) / (2 * 110)
-                w_r, h_r = (56 / 520), (83 / 110)
+
+                x7, y2 = x6 + 45, y2
+                x_r, y_r = (x6 + x7) / (2 * 355), (y1 + y2) / (2 * 155)
+                w_r, h_r = (45 / 355), (83 / 155)
                 class_name = names.index(self.number_list[rand_int])
                 txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
                 f.write(txt)
+                col += 45
+                x7, y1 = x7, y1
+
+                # number 7
+                rand_int = random.randint(0, 9)
+                label += self.number_list[rand_int]
+                Plate[row:row + 83, col:col + 45, :] = self.add(Plate[row:row + 83, col:col + 45, :],
+                                                                self.random_bright(number[rand_int]))
+                x8, y2 = x7 + 45, y2
+                x_r, y_r = (x7 + x8) / (2 * 355), (y1 + y2) / (2 * 155)
+                w_r, h_r = (45 / 355), (83 / 155)
+                class_name = names.index(self.number_list[rand_int])
+                txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
+                f.write(txt)
+                col += 45
                 f.close()
 
-                # # number 7
-                # col += 56
-                # x7, y1 = x7, y1
-
-                # rand_int = random.randint(0, 9)
-                # label += self.number_list[rand_int]
-                # Plate[row:row + 83, col:col + 56, :] = self.add(Plate[row:row + 83, col:col + 56, :],
-                #                                                 self.random_bright(number[rand_int]))
-                # x8, y2 = x7 + 56, y2
-                # x_r, y_r = (x7 + x8) / (2 * 520), (y1 + y2) / (2 * 110)
-                # w_r, h_r = (56 / 520), (83 / 110)
-                # class_name = names.index(self.number_list[rand_int])
-                # txt = f'{class_name} {x_r} {y_r} {w_r} {h_r}\n'
-                # f.write(txt)
-                # col += 56
-                # f.close()
-
                 if save:
-                    cv2.imwrite(self.save_path + "image_b_" + str(count_a) + ".jpg", Plate)
-                    count_a += 1
+                    cv2.imwrite(self.save_path + "image_b_" + str(count_b) + ".jpg", Plate)
+                    count_b += 1
+                    # cv2.imwrite(self.save_path + label + ".jpg", Plate)  # If you want to save labels as image name
                 else:
-                    pass
+                    print('Images are not saved')
 
 
 if __name__ == '__main__':
